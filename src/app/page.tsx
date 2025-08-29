@@ -1,5 +1,6 @@
 import Container from "@/components/Container";
 import Header from "@/components/Header";
+import { PostHeading } from "@/components/PostHeading";
 import PostsList from "@/components/PostsList";
 import SpinLoader from "@/components/SpinLoader";
 import Image from "next/image";
@@ -13,7 +14,7 @@ export default function HomePage() {
       <section className="grid grid-cols-1 gap-8 mb-5 sm:grid-cols-2 sm: items-center group">
         <Link href={"/"} className="w-full h-full overflow-hidden">
           <Image
-            className="group-hover:scale-105 transition duration-300"
+            className="group-hover:scale-105 transition duration-300 w-full h-full object-cover"
             alt="Imagem"
             src="/images/bryen_0.png"
             width={1200}
@@ -21,9 +22,17 @@ export default function HomePage() {
           />
         </Link>
         <div className="flex flex-col gap-4 sm:justify-center">
-          <time dateTime="2025-08-29" className="text-slate-600">
+          <time
+            dateTime="2025-08-29"
+            className="text-slate-600 block text-sm/tight"
+          >
             29/08/2025 16:00
           </time>
+
+          <PostHeading as="h1" url="#">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque,
+            optio.
+          </PostHeading>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
             est odio minima nostrum id perferendis nisi veniam? Assumenda

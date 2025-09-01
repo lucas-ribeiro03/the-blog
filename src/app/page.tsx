@@ -1,4 +1,5 @@
 import Container from "@/components/Container";
+import { FeaturedPost } from "@/components/FeaturedPost";
 import Header from "@/components/Header";
 import { PostCoverImage } from "@/components/PostCoverImage";
 import { PostHeading } from "@/components/PostHeading";
@@ -10,7 +11,9 @@ export default function HomePage() {
   return (
     <Container>
       <Header />
-      <section className="grid grid-cols-1 gap-8 mb-5 sm:grid-cols-2 sm: items-center group"></section>
+      <Suspense fallback={<SpinLoader />}>
+        <FeaturedPost />
+      </Suspense>
       <Suspense fallback={<SpinLoader />}>
         <PostsList />
       </Suspense>

@@ -1,10 +1,9 @@
 import Container from "@/components/Container";
 import Header from "@/components/Header";
+import { PostCoverImage } from "@/components/PostCoverImage";
 import { PostHeading } from "@/components/PostHeading";
 import PostsList from "@/components/PostsList";
 import SpinLoader from "@/components/SpinLoader";
-import Image from "next/image";
-import Link from "next/link";
 import { Suspense } from "react";
 
 export default function HomePage() {
@@ -12,15 +11,16 @@ export default function HomePage() {
     <Container>
       <Header />
       <section className="grid grid-cols-1 gap-8 mb-5 sm:grid-cols-2 sm: items-center group">
-        <Link href={"/"} className="w-full h-full overflow-hidden">
-          <Image
-            className="group-hover:scale-105 transition duration-300 w-full h-full object-cover"
-            alt="Imagem"
-            src="/images/bryen_0.png"
-            width={1200}
-            height={720}
-          />
-        </Link>
+        <PostCoverImage
+          imageProps={{
+            alt: "Alt da imagem",
+            src: "/images/bryen_9.png",
+            width: 1200,
+            height: 720,
+            priority: true,
+          }}
+          linkProps={{ href: "#" }}
+        />
         <div className="flex flex-col gap-4 sm:justify-center">
           <time
             dateTime="2025-08-29"

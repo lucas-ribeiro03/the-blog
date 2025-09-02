@@ -20,7 +20,7 @@ export default async function PostsList() {
                 width: 1200,
                 height: 720,
               }}
-              linkProps={{ href: post.slug }}
+              linkProps={{ href: postLink }}
             />
             <PostSummary
               createdAt={post.createdAt}

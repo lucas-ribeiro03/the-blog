@@ -1,5 +1,6 @@
 import Container from "@/components/Container";
 import { FeaturedPost } from "@/components/FeaturedPost";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import PostsList from "@/components/PostsList";
 import SpinLoader from "@/components/SpinLoader";
@@ -15,7 +16,6 @@ export default function HomePage() {
       <Suspense fallback={<SpinLoader />}>
         <PostsList />
       </Suspense>
-      <p>AQUI É O FOOTER</p>
     </Container>
   );
 }

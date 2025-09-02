@@ -1,5 +1,8 @@
 import { Metadata } from "next";
 import "./globals.css";
+import Container from "@/components/Container";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
@@ -15,7 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Container>
+          <Header />
+          {children}
+          <Footer />
+        </Container>
+      </body>
     </html>
   );
 }

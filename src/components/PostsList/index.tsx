@@ -3,7 +3,7 @@ import { PostCoverImage } from "../PostCoverImage";
 import { PostSummary } from "../PostSummary";
 
 export default async function PostsList() {
-  const posts = await postRepository.findAll();
+  const posts = await postRepository.findAllPublic();
 
   console.log(posts);
   return (

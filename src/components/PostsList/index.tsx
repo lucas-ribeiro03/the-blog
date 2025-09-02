@@ -23,6 +23,7 @@ export default async function PostsList() {
             createdAt={post.createdAt}
             excerpt={post.excerpt}
             title={post.title}
+            postLink={post.slug}
             key={post.id}
           />
         </div>

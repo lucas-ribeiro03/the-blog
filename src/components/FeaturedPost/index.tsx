@@ -18,6 +18,7 @@ export const FeaturedPost = async () => {
         linkProps={{ href: post.slug }}
       />
       <PostSummary
+        postLink={post.slug}
         createdAt={post.createdAt}
         excerpt={post.excerpt}
         title={post.title}

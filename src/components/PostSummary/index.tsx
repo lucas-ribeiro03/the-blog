@@ -5,12 +5,14 @@ type PostSummaryProps = {
   createdAt: string;
   title: string;
   excerpt: string;
+  postLink: string;
 };
 
 export const PostSummary = ({
   createdAt,
   excerpt,
   title,
+  postLink,
 }: PostSummaryProps) => {
   return (
     <div>
@@ -23,7 +25,7 @@ export const PostSummary = ({
           {formatDate(createdAt)}
         </time>
 
-        <PostHeading as="h2" url="#">
+        <PostHeading as="h2" url={postLink}>
           {title}
         </PostHeading>
         <p>{excerpt}</p>

@@ -5,6 +5,7 @@ import { PostSummary } from "../PostSummary";
 export const FeaturedPost = async () => {
   const posts = await postRepository.findAllPublic();
   const post = posts[0];
+  const postLink = `post/${post.slug}`;
   return (
     <section className="grid grid-cols-1 gap-8 mb-5 sm:grid-cols-2 sm: items-center group">
       <PostCoverImage
@@ -18,7 +19,7 @@ export const FeaturedPost = async () => {
         linkProps={{ href: post.slug }}
       />
       <PostSummary
-        postLink={post.slug}
+        postLink={postLink}
         createdAt={post.createdAt}
         excerpt={post.excerpt}
         title={post.title}

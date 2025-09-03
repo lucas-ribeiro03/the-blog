@@ -1,4 +1,3 @@
-import { dateDistanceToNow, formatDate } from "@/utils/format-datetime";
 import { PostHeading } from "../PostHeading";
 import PostDate from "../PostDate";
 

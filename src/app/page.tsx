@@ -9,8 +9,6 @@ export default function HomePage() {
     <Container>
       <Suspense fallback={<SpinLoader />}>
         <FeaturedPost />
-      </Suspense>
-      <Suspense fallback={<SpinLoader />}>
         <PostsList />
       </Suspense>
     </Container>

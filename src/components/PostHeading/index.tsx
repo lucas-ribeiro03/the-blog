@@ -19,8 +19,12 @@ export const PostHeading = ({
     <Tag
       className={`${headingClassesMap[Tag]}, hover:text-slate-500 transition`}
     >
-      {children}
-      <Link href={url}></Link>
+      <Link
+        href={url}
+        className="group-hover:text-slate-600 dark:group-hover:text-gray-400"
+      >
+        {children}
+      </Link>
     </Tag>
   );
 };

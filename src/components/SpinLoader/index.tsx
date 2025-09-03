@@ -16,6 +16,7 @@ export default function SpinLoader() {
           "h-10",
           "border-4",
           "border-slate-900",
+          "dark:border-white",
           "border-t-transparent",
           "rounded-full",
           "animate-spin"

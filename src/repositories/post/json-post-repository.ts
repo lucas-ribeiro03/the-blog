@@ -35,7 +35,6 @@ export class JsonPostRepository implements PostRepository {
   }
 
   async findById(id: string): Promise<PostModel> {
-    this.simulateWait();
     const posts = await this.findAllPublic();
     const post = posts.find((post) => post.id === id);
     if (!post) throw new Error("Post nao encontrado");
@@ -43,7 +42,6 @@ export class JsonPostRepository implements PostRepository {
   }
 
   async findBySlug(slug: string): Promise<PostModel> {
-    this.simulateWait();
     const posts = await this.findAllPublic();
     const post = posts.find((post) => post.slug === slug);
     if (!post) throw new Error("Post não encontrado");

@@ -14,7 +14,6 @@ export const PostSummary = ({
   title,
   postLink,
 }: PostSummaryProps) => {
-  console.log(postLink, title);
   return (
     <div>
       <div className="flex flex-col gap-4 sm:justify-center">

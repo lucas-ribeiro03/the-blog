@@ -10,8 +10,6 @@ import { PostTable } from "./schemas";
     await drizzleDb.insert(PostTable).values(posts);
   } catch (e) {
     console.log("Houve um erro");
-    console.log(" ");
-    console.log(" ");
     console.log(e);
   }
 })();

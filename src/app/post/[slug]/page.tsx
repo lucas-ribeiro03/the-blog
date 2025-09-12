@@ -4,6 +4,8 @@ import { findPostBySlugCached } from "@/lib/queries";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
+export const dynamic = "force-static";
+
 type PostPageProps = {
   params: Promise<{ slug: string }>;
 };

@@ -16,17 +16,18 @@ export const findAllPublicPostsCached = unstable_cache(
 export const findPostByIdCached = cache(
   async (id: string) => await postRepository.findById(id)
 );
-export const findPostBySlugCached = unstable_cache(
-  cache(async (slug: string) => {
-    const post = await postRepository
-      .findBySlugPublic(slug)
-      .catch(() => undefined);
-    if (!post) notFound();
-    return post;
-  }),
-  ["posts"],
-  {
-    tags: ["posts"],
-    revalidate: 60,
-  }
-);
+export const findPostBySlugCached = (slug: string) =>
+  unstable_cache(
+    cache(async (slug: string) => {
+      const post = await postRepository
+        .findBySlugPublic(slug)
+        .catch(() => undefined);
+      if (!post) notFound();
+      return post;
+    }),
+    ["posts"],
+    {
+      tags: [`post-${slug}`],
+      revalidate: 60,
+    }
+  )(slug);

@@ -1,5 +1,15 @@
+import { postRepository } from "@/repositories/post";
+
 export const dynamic = "force-dynamic";
 
 export default async function AdminPostPage() {
-  return <div className="py-6 text-6xl">AdminPostPage</div>;
+  const posts = await postRepository.findAll();
+
+  return (
+    <div className="py-6 flex gap-2 flex-col">
+      {posts.map((post) => {
+        return <p key={post.id}>{post.title}</p>;
+      })}
+    </div>
+  );
 }

@@ -5,7 +5,7 @@ import { PostTable } from "./schemas";
 (async () => {
   await drizzleDb.delete(PostTable); //Limpar a base de dados antes de inserir os dados
   const postsJson = new JsonPostRepository();
-  const posts = await postsJson.findAllPublic();
+  const posts = await postsJson.findAll();
   try {
     await drizzleDb.insert(PostTable).values(posts);
   } catch (e) {

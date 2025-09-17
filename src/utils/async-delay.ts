@@ -1,4 +1,7 @@
-export const asyncDelay = async (milisseconds: number = 0, verbose: false) => {
+export const asyncDelay = async (
+  milisseconds: number = 0,
+  verbose: boolean = false
+) => {
   if (milisseconds) return;
 
   if (verbose) {

@@ -1,4 +1,4 @@
-import { findPostBySlugPublic } from "@/lib/public";
+import { findPostBySlugPublic } from "@/lib/queries/public";
 import Image from "next/image";
 import { PostHeading } from "../PostHeading";
 import PostDate from "../PostDate";

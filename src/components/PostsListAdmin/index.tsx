@@ -2,12 +2,16 @@ import { findAllPostsAdmin } from "@/lib/queries/admin";
 import clsx from "clsx";
 import Link from "next/link";
 import { DeletePostButton } from "../Admin/DeletePostButton";
+import ErrorMessage from "../ErrorMessage";
 
 export default async function PostsListAdmin() {
   const posts = await findAllPostsAdmin();
 
   return (
     <div className="py-6 flex gap-2 flex-col">
+      {posts.length <= 0 && (
+        <ErrorMessage contentTitle="Ei!" content="Vamos criar um post?" />
+      )}
       {posts.map((post) => {
         return (
           <div

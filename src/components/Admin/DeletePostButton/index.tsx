@@ -17,8 +17,12 @@ export const DeletePostButton = ({ id }: DeletePostButtonProps) => {
   const handleDeletePost = () => {
     startTransition(async () => {
       const result = await deletePostAction(id);
-      alert(result);
-      setShowDialog(false);
+      if (result?.error) {
+        alert(result.error);
+        setShowDialog(false);
+      }
+
+      return;
     });
   };
   return (

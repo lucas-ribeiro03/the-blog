@@ -1,3 +1,5 @@
+import { Button } from "../Button";
+
 type DialogProps = {
   title: string;
   content: string;
@@ -30,20 +32,12 @@ export const Dialog = ({
         <h1 className="text-xl font-bold">{title}</h1>
         <p className="text-center">{content}</p>
         <div className="flex justify-around gap-6">
-          <button
-            disabled={disabled}
-            onClick={onCancel}
-            className="bg-slate-400 text-slate-50 font-extrabold py-3 px-7 rounded-xl  hover:bg-slate-600 cursor-pointer transition duration-150 disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed"
-          >
+          <Button disabled={disabled} onClick={onCancel}>
             Cancelar
-          </button>
-          <button
-            disabled={disabled}
-            onClick={onConfirm}
-            className="bg-blue-500 hover:bg-blue-600 cursor-pointer transition duration-150 text-slate-50 font-extrabold py-3 px-7 rounded-xl  disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed"
-          >
+          </Button>
+          <Button disabled={disabled} onClick={onConfirm}>
             Confirmar
-          </button>
+          </Button>
         </div>
       </div>
     </div>

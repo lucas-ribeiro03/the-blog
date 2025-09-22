@@ -30,7 +30,8 @@ export const InputText = ({ labelText, ...props }: InputTextProps) => {
           "disabled:bg-slate-200",
           "disabled:text-slate-400",
           "disabled:placeholder-slate-400",
-          "read-only:bg-slate-200"
+          "read-only:bg-slate-200",
+          props.className
         )}
         id={id}
       />

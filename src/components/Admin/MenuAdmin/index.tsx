@@ -58,7 +58,7 @@ export const MenuAdmin = () => {
         <FileTextIcon size={16} />
         Posts
       </Link>
-      <Link href={"/admin/posts"} className={linkClasses}>
+      <Link href={"/admin/post/new_post"} className={linkClasses}>
         <PlusIcon size={16} />
         Criar post
       </Link>

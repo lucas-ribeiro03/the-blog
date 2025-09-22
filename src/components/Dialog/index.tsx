@@ -32,10 +32,20 @@ export const Dialog = ({
         <h1 className="text-xl font-bold">{title}</h1>
         <p className="text-center">{content}</p>
         <div className="flex justify-around gap-6">
-          <Button disabled={disabled} onClick={onCancel}>
+          <Button
+            disabled={disabled}
+            variant="ghost"
+            size="md"
+            onClick={onCancel}
+          >
             Cancelar
           </Button>
-          <Button disabled={disabled} onClick={onConfirm}>
+          <Button
+            variant="default"
+            size="lg"
+            disabled={disabled}
+            onClick={onConfirm}
+          >
             Confirmar
           </Button>
         </div>

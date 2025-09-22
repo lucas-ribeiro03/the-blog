@@ -18,14 +18,16 @@ export const InputText = ({ labelText, ...props }: InputTextProps) => {
         {...props}
         className={clsx(
           "bg-white",
-          "ring-1",
+          "ring-2",
+          "outline-0",
           "ring-slate-400",
+          "text-slate-800",
           "rounded",
           "p-2",
           "text-base/tight",
           "transition",
           "duration-300",
-          "focus:ring-slate-blue-600",
+          "focus:ring-blue-600",
           "placeholder-slate-100",
           "disabled:bg-slate-200",
           "disabled:text-slate-400",

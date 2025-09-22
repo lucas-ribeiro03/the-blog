@@ -54,7 +54,7 @@ export const MenuAdmin = () => {
         <HouseIcon size={16} />
         Home
       </a>
-      <Link href={"/admin/posts"} className={linkClasses}>
+      <Link href={"/admin/post"} className={linkClasses}>
         <FileTextIcon size={16} />
         Posts
       </Link>

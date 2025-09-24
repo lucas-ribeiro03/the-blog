@@ -1,4 +1,5 @@
 db.sqlite3
+uploads/
 # dependencies
 /node_modules
 /.pnp

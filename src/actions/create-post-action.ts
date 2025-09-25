@@ -9,10 +9,11 @@ export const createPostAction = async (
   prevState: createPostActionState,
   formData: FormData
 ): Promise<createPostActionState> => {
-  const title = formData.get("title")?.toString() || "";
+  const formDataToObj = Object.fromEntries(formData.entries());
+  console.log(formDataToObj);
 
   return {
-    formState: { ...prevState.formState, title },
+    formState: { ...prevState.formState },
     errors: [],
   };
 };

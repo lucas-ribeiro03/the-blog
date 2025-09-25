@@ -1,11 +1,18 @@
+import { PublicPost } from "@/dto/dto";
+
 type createPostActionState = {
-  numero: number;
+  formState: PublicPost;
+  errors: string[];
 };
 
 export const createPostAction = async (
-  prevState: createPostActionState
+  prevState: createPostActionState,
+  formData: FormData
 ): Promise<createPostActionState> => {
+  const title = formData.get("title")?.toString() || "";
+
   return {
-    numero: prevState.numero + 1,
+    formState: { ...prevState.formState, title },
+    errors: [],
   };
 };

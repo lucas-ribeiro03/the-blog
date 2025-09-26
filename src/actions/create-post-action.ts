@@ -13,6 +13,8 @@ import { v4 as uuidV4 } from "uuid";
 type createPostActionState = {
   formState: PublicPost;
   errors: string[];
+
+  success?: true;
 };
 
 export const createPostAction = async (

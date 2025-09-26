@@ -68,7 +68,7 @@ export class DrizzlePostRepository implements PostRepository {
       throw new Error("Post não existe");
     }
 
-    await drizzleDb.delete(PostTable);
+    await drizzleDb.delete(PostTable).where(eq(PostTable.id, id));
     return post;
   }
 

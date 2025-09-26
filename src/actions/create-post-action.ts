@@ -4,6 +4,7 @@ import { PostTable } from "@/drizzle/schemas";
 import { MakePartialPublicPost, PublicPost } from "@/dto/dto";
 import { postCreateSchema } from "@/lib/post/validation";
 import { PostModel } from "@/models/post/post-model";
+import { postRepository } from "@/repositories/post";
 import { getZodErrorMessage } from "@/utils/get-zod-error-messages";
 import { makeSlugFromText } from "@/utils/make-slug-from-text";
 import { revalidateTag } from "next/cache";
@@ -38,12 +39,21 @@ export const createPostAction = async (
     slug: makeSlugFromText(validPostData.title),
   };
 
-  await drizzleDb.insert(PostTable).values(newPost);
+  try {
+    await postRepository.create(newPost);
+  } catch (e) {
+    if (e instanceof Error) {
+      return {
+        formState: newPost,
+        errors: [e.message],
+      };
+    }
+
+    return {
+      formState: newPost,
+      errors: ["Erro desconhecido"],
+    };
+  }
   revalidateTag("posts");
   redirect(`/admin/post/${newPost.id}`);
-
-  return {
-    formState: newPost,
-    errors: [],
-  };
 };

@@ -8,16 +8,34 @@ import { InputCheckbox } from "@/components/InputCheckbox";
 import { MakePartialPublicPost, PublicPost } from "@/dto/dto";
 import { createPostAction } from "@/actions/create-post-action";
 import { toast } from "react-toastify";
-type ManagePostFormProps = {
+import { updatePostAction } from "@/actions/update-post-action";
+type ManagePostFormCreateProps = {
+  mode: "create";
+};
+type ManagePostFormUpdateProps = {
+  mode: "update";
   publicPost?: PublicPost;
 };
-export const ManagePostForm = ({ publicPost }: ManagePostFormProps) => {
+type ManagePostFormProps =
+  | ManagePostFormCreateProps
+  | ManagePostFormUpdateProps;
+export const ManagePostForm = (props: ManagePostFormProps) => {
+  const { mode } = props;
+  let publicPost;
+  if (mode === "update") {
+    publicPost = props.publicPost;
+  }
   const initialState = {
     formState: MakePartialPublicPost(publicPost),
     errors: [],
   };
+
+  const actionsMap = {
+    create: createPostAction,
+    update: updatePostAction,
+  };
   const [state, action, isPending] = useActionState(
-    createPostAction,
+    actionsMap[mode],
     initialState
   );
 
@@ -32,6 +50,12 @@ export const ManagePostForm = ({ publicPost }: ManagePostFormProps) => {
       });
     }
   }, [state.errors]);
+  useEffect(() => {
+    if (state.success) {
+      toast.dismiss();
+      toast.success("Post atualizado");
+    }
+  }, [state.success]);
 
   return (
     <form action={action} className="flex flex-col gap-6">
@@ -39,6 +63,7 @@ export const ManagePostForm = ({ publicPost }: ManagePostFormProps) => {
         labelText="Autor"
         name="author"
         defaultValue={formState.author}
+        disabled={isPending}
       />
       <InputText
         labelText="Título"
@@ -49,26 +74,34 @@ export const ManagePostForm = ({ publicPost }: ManagePostFormProps) => {
         labelText="Resumo"
         name="excerpt"
         defaultValue={formState.excerpt}
+        disabled={isPending}
       />
       <MarkdownEditor
         labelText="Conteúdo"
-        disabled={false}
         textAreaName="content"
         value={contentValue}
         setValue={setContentValue}
+        disabled={isPending}
       />
-      <ImageUploader />
+      <ImageUploader disabled={isPending} />
       <InputText
         defaultValue={formState.coverImageUrl}
         labelText="Url da imagem de capa"
         name="coverImageUrl"
+        disabled={isPending}
       />
       <InputCheckbox
         labelText="Público"
         name="published"
         defaultChecked={formState.published}
+        disabled={isPending}
       />
-      <Button className="w-full mt-6" variant="default" size="md">
+      <Button
+        className="w-full mt-6"
+        variant="default"
+        size="md"
+        disabled={isPending}
+      >
         Enviar
       </Button>
     </form>

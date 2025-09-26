@@ -1,3 +1,4 @@
+"use server";
 import { PublicPost } from "@/dto/dto";
 
 type createPostActionState = {

@@ -1,4 +1,3 @@
-import { getZodErrorMessage } from "@/utils/get-zod-error-messages";
 import { isUrlOrRelativePath } from "@/utils/is-url-or-relative-path";
 import sanitizeHtml from "sanitize-html";
 import z from "zod";
@@ -42,18 +41,3 @@ const PostBaseSchema = z.object({
 });
 
 export const postCreateSchema = PostBaseSchema;
-const obj = {
-  author: "Pedro Martins",
-  title: "Como a escrita pode mudar sua carreira",
-  excerpt: "",
-  content:
-    "Muitas empresas e desenvolvedores individuais escolhem o Next.js justamente porque ele consegue unir simplicidade com recursos avançados.",
-  coverImageUrl: "/images/bryen_9.png",
-  published: "on",
-};
-
-const zodParsedObj = postCreateSchema.safeParse(obj);
-if (!zodParsedObj.success) {
-  const errors = getZodErrorMessage(z.treeifyError(zodParsedObj.error));
-  console.log(errors);
-}

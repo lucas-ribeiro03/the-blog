@@ -1,5 +1,7 @@
 "use server";
-import { PublicPost } from "@/dto/dto";
+import { MakePartialPublicPost, PublicPost } from "@/dto/dto";
+import { postCreateSchema } from "@/lib/post/validation";
+import { getZodErrorMessage } from "@/utils/get-zod-error-messages";
 
 type createPostActionState = {
   formState: PublicPost;
@@ -11,7 +13,14 @@ export const createPostAction = async (
   formData: FormData
 ): Promise<createPostActionState> => {
   const formDataToObj = Object.fromEntries(formData.entries());
-  console.log(formDataToObj);
+  const zodParsedObj = postCreateSchema.safeParse(formDataToObj);
+  if (!zodParsedObj.success) {
+    const errors = getZodErrorMessage(zodParsedObj.error);
+    return {
+      errors,
+      formState: MakePartialPublicPost(formDataToObj),
+    };
+  }
 
   return {
     formState: { ...prevState.formState },

@@ -41,3 +41,4 @@ const PostBaseSchema = z.object({
 });
 
 export const postCreateSchema = PostBaseSchema;
+export const postUpdateSchema = postCreateSchema.extend({});

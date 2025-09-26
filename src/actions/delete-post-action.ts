@@ -1,10 +1,6 @@
 "use server";
 
-import { drizzleDb } from "@/drizzle";
-import { PostTable } from "@/drizzle/schemas";
 import { postRepository } from "@/repositories/post";
-import { asyncDelay } from "@/utils/async-delay";
-import { eq } from "drizzle-orm";
 import { revalidateTag } from "next/cache";
 
 export const deletePostAction = async (id: string) => {

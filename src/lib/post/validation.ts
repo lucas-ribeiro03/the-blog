@@ -21,8 +21,8 @@ const PostBaseSchema = z.object({
   excerpt: z
     .string()
     .trim()
-    .min(4, "Autor deve conter no mínimo 4 caractéres")
-    .max(200, "Autor deve conter no máximo 200 caractéres"),
+    .min(4, "Resumo deve conter no mínimo 4 caractéres")
+    .max(200, "Resumo deve conter no máximo 200 caractéres"),
   coverImageUrl: z.string().trim().refine(isUrlOrRelativePath, {
     message: "URL da capa deve ser uma URL ou um caminho para imagem",
   }),

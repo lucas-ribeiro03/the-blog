@@ -7,6 +7,7 @@ import { ImageUploader } from "../ImageUploader";
 import { InputCheckbox } from "@/components/InputCheckbox";
 import { MakePartialPublicPost, PublicPost } from "@/dto/dto";
 import { createPostAction } from "@/actions/create-post-action";
+import { toast } from "react-toastify";
 type ManagePostFormProps = {
   publicPost?: PublicPost;
 };
@@ -21,8 +22,16 @@ export const ManagePostForm = ({ publicPost }: ManagePostFormProps) => {
   );
 
   const { formState } = state;
-
   const [contentValue, setContentValue] = useState(publicPost?.content || "");
+
+  useEffect(() => {
+    if (state.errors.length > 0) {
+      toast.dismiss();
+      state.errors.forEach((error) => {
+        toast.error(error);
+      });
+    }
+  }, [state.errors]);
 
   return (
     <form action={action} className="flex flex-col gap-6">

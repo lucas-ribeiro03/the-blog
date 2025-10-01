@@ -39,7 +39,7 @@ export const loginAction = async (
 
   if (!isUsernameValid || !isPasswordValid) {
     return {
-      username: "",
+      username,
       error: "Usuário ou senha inválidos",
     };
   }

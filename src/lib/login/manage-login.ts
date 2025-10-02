@@ -57,9 +57,16 @@ export const getLoginSession = async () => {
 export const verifyLoginSession = async () => {
   const jwtPayload = await getLoginSession();
   console.log();
-  if (!jwtPayload) return false;
+  if (!jwtPayload) {
+    redirect("/admin/login");
+  }
 
-  if (!(jwtPayload.username === process.env.LOGIN_USER)) {
+  console.log(jwtPayload + "jwtpayload");
+
+  const isAuthenticated = jwtPayload.username === process.env.LOGIN_USER;
+  console.log(isAuthenticated);
+
+  if (!isAuthenticated) {
     redirect("/admin/login");
   }
 

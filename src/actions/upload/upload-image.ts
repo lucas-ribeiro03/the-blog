@@ -1,5 +1,6 @@
 "use server";
 
+import { verifyLoginSession } from "@/lib/login/manage-login";
 import { mkdir, writeFile } from "fs/promises";
 import { extname, resolve } from "path";
 
@@ -33,6 +34,12 @@ export async function uploadImageAction(
 
   if (!file.type.startsWith("image/")) {
     return makeResult({ error: "Imagem inválida" });
+  }
+
+  const isAuthenticated = await verifyLoginSession();
+
+  if (!isAuthenticated) {
+    return makeResult({ error: "Você precisa estar logado para fazer isso" });
   }
 
   const imageExtension = extname(file.name);

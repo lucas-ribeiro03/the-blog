@@ -1,6 +1,7 @@
 "use server";
 
 import { MakePartialPublicPost, PublicPost } from "@/dto/dto";
+import { verifyLoginSession } from "@/lib/login/manage-login";
 import { postCreateSchema } from "@/lib/post/validation";
 import { PostModel } from "@/models/post/post-model";
 import { postRepository } from "@/repositories/post";
@@ -28,6 +29,15 @@ export const createPostAction = async (
     return {
       errors,
       formState: MakePartialPublicPost(formDataToObj),
+    };
+  }
+
+  const isAuthenticated = await verifyLoginSession();
+
+  if (!isAuthenticated) {
+    return {
+      formState: MakePartialPublicPost(formDataToObj),
+      errors: ["Você precisa estar logado para fazer isso"],
     };
   }
 

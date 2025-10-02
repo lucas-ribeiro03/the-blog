@@ -1,10 +1,7 @@
 "use server";
 
-import {
-  MakePartialPublicPost,
-  MakePublicPostFromDb,
-  PublicPost,
-} from "@/dto/dto";
+import { MakePartialPublicPost, PublicPost } from "@/dto/dto";
+import { verifyLoginSession } from "@/lib/login/manage-login";
 import { postUpdateSchema } from "@/lib/post/validation";
 import { PostModel } from "@/models/post/post-model";
 import { postRepository } from "@/repositories/post";
@@ -61,12 +58,15 @@ export const updatePostAction = async (
       errors: ["Erro desconhecido"],
     };
   }
+
+  const isAuthenticated = await verifyLoginSession();
+
+  if (!isAuthenticated) {
+    return {
+      formState: MakePartialPublicPost(formDataToObj),
+      errors: ["Você precisa estar logado para fazer isso"],
+    };
+  }
   revalidateTag("posts");
   redirect(`post-${post.slug}`);
-
-  return {
-    formState: MakePublicPostFromDb(post),
-    errors: [],
-    success: true,
-  };
 };

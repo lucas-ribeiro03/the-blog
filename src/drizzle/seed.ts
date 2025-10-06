@@ -8,6 +8,7 @@ import { PostTable } from "./schemas";
   const posts = await postsJson.findAll();
   try {
     await drizzleDb.insert(PostTable).values(posts);
+    console.log("Posts salvos");
   } catch (e) {
     console.log("Houve um erro");
     console.log(e);
